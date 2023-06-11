@@ -1,0 +1,9 @@
+# firebase emulator
+docker/firebase/.gitignoreI
+docker/firebase/config
+docker/firebase/bin
+firestore-debug.log
+ui-debug.log
+firebase-debug.log
+.firebaserc
+firestore.* # commentout if you want to keep firestore data

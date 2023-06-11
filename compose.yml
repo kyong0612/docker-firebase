@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  firebase:
+    container_name: firebase
+    build:
+      context: docker/firebase 
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./docker/firebase
+        target: /opt/firebase
+      - type: bind
+        source: ./docker/firebase/bin
+        target: /root/.cache
+      - type: bind
+        source: ./docker/firebase/config
+        target: /root/.config
+    ports:
+      - 9099:9099 # Firebase Authentication
+      - 4000:4000 # Emulator Suite UI
+      # if you need other services, uncomment the following lines
+      # - 8080:8080 # Cloud Firestore
+      # - 5001:5001 # Clound Functions
+      # - 9000:9000 # Realtime Database
+      # - 5000:5000 # Firebase Hosting
+      # - 8085:8085 # Cloud Pub/Sub
+      # - 9199:9199 # Cloud Storage
+    working_dir: /opt/firebase
+    command: firebase emulators:start
+    tty: true
